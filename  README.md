@@ -1,7 +1,7 @@
 # Letting Go
 
 Курс о том, как перестать писать на Go с ООП-акцентом.
-Для разработчиков с опытом Python или C++.
+Для разработчиков с опытом Python.
 
 > **Статус: черновик.** Содержимое неполное, структура меняется,
 > ничего не зафиксировано. Репозиторий публичный по техническим
@@ -10,26 +10,34 @@
 ## О чём это
 
 ```go
-type UserServiceInterface interface {
-	GetByID(id int) (*User, error)
-	Create(u *User) error
+type BaseModel struct {
+	id        int
+	createdAt time.Time
 }
 
-type AbstractUserService struct {
-	repo RepositoryInterface
+func (m BaseModel) GetID() int   { return m.id }
+func (m BaseModel) SetID(id int) { m.id = id }
+
+type User struct {
+	BaseModel
+	name string
 }
 
-type UserServiceImpl struct {
-	AbstractUserService
+type UserManager struct {
+	db *sql.DB
 }
 
-func NewUserServiceImpl(r RepositoryInterface) UserServiceInterface {
-	return &UserServiceImpl{AbstractUserService{repo: r}}
+func NewUserManager() *UserManager {
+	db, _ := sql.Open("postgres", os.Getenv("DSN"))
+	return &UserManager{db: db}
 }
 ```
 
 Этот код компилируется, проходит `gofmt` и `go vet`. И это не Go —
-это Java, записанная буквами Go.
+это Django, записанный буквами Go. Базовая модель вместо композиции,
+геттер и сеттер к полю собственного пакета, соединение с базой в
+конструкторе, проглоченная ошибка. И сеттер, который молча не
+работает.
 
 Между «знаю синтаксис Go» и «пишу на Go идиоматично» лежит разрыв,
 который не закрывается чтением документации. Tour of Go учит

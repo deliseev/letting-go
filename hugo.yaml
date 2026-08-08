@@ -1,0 +1,6 @@
+baseURL: https://deliseev.github.io/letting-go
+locale: ru
+title: "От ООП к Go: идиоматическое мышление для разработчиков с опытом Python"
+module:
+  imports:
+    - path: github.com/imfing/hextra
