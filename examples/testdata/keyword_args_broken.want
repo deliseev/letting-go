@@ -1,0 +1,2 @@
+# command-line-arguments
+testdata/keyword_args_broken.go:15:21: syntax error: unexpected : in argument list; possibly missing comma or )
