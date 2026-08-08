@@ -1,12 +1,10 @@
 ---
 id: intro
-title: "Letting Go"
+title: "Введение"
 description: "От ООП-мышления к идиоматичному Go"
 weight: 1
 draft: true
 ---
-
-# Letting Go
 
 Посмотрите на этот код.
 
