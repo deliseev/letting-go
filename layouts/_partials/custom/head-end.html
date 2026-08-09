@@ -1,0 +1,10 @@
+<script>
+(function () {
+  var p = localStorage.getItem("hextra-palette");
+  if (p === "nord" || p === "catppuccin") {
+    document.documentElement.setAttribute("data-palette", p);
+  } else {
+    document.documentElement.setAttribute("data-palette", "nord");
+  }
+})();
+</script>

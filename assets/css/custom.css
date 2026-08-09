@@ -1,0 +1,410 @@
+html {
+  font-size: 18px;
+}
+
+/* ── Nord ─────────────────────────────────────────────────────── */
+
+html[data-palette="nord"] {
+  --hx-color-white:      #eceff4;
+  --primary-hue:         210deg;
+  --primary-saturation:  35%;
+  --primary-lightness:   52%;
+}
+html[data-palette="nord"]:not(.dark) body {
+  background-color: #eceff4;
+}
+
+html[data-palette="nord"].dark {
+  --hx-color-dark:       #2e3440;
+  --primary-hue:         204deg;
+  --primary-saturation:  35%;
+  --primary-lightness:   60%;
+}
+html[data-palette="nord"].dark body {
+  background-color: #2e3440;
+}
+
+/* Nord — подсветка кода, светлая тема */
+html[data-palette="nord"]:not(.dark) .chroma {
+  background-color: #e5e9f0; color: #2e3440;
+}
+html[data-palette="nord"]:not(.dark) .chroma .k,
+html[data-palette="nord"]:not(.dark) .chroma .kc,
+html[data-palette="nord"]:not(.dark) .chroma .kd,
+html[data-palette="nord"]:not(.dark) .chroma .kn,
+html[data-palette="nord"]:not(.dark) .chroma .kp,
+html[data-palette="nord"]:not(.dark) .chroma .kr,
+html[data-palette="nord"]:not(.dark) .chroma .kt {
+  color: #81a1c1; font-weight: normal;
+}
+html[data-palette="nord"]:not(.dark) .chroma .nc {
+  color: #8fbcbb; font-weight: bold;
+}
+html[data-palette="nord"]:not(.dark) .chroma .nf,
+html[data-palette="nord"]:not(.dark) .chroma .ne,
+html[data-palette="nord"]:not(.dark) .chroma .nd {
+  color: #88c0d0; font-weight: normal;
+}
+html[data-palette="nord"]:not(.dark) .chroma .nb,
+html[data-palette="nord"]:not(.dark) .chroma .bp,
+html[data-palette="nord"]:not(.dark) .chroma .nv,
+html[data-palette="nord"]:not(.dark) .chroma .vc,
+html[data-palette="nord"]:not(.dark) .chroma .vg,
+html[data-palette="nord"]:not(.dark) .chroma .vi { color: #5e81ac; }
+html[data-palette="nord"]:not(.dark) .chroma .s,
+html[data-palette="nord"]:not(.dark) .chroma .s1,
+html[data-palette="nord"]:not(.dark) .chroma .s2,
+html[data-palette="nord"]:not(.dark) .chroma .sa,
+html[data-palette="nord"]:not(.dark) .chroma .sb,
+html[data-palette="nord"]:not(.dark) .chroma .sc,
+html[data-palette="nord"]:not(.dark) .chroma .sd,
+html[data-palette="nord"]:not(.dark) .chroma .se,
+html[data-palette="nord"]:not(.dark) .chroma .sh,
+html[data-palette="nord"]:not(.dark) .chroma .si,
+html[data-palette="nord"]:not(.dark) .chroma .sx,
+html[data-palette="nord"]:not(.dark) .chroma .sr,
+html[data-palette="nord"]:not(.dark) .chroma .ss,
+html[data-palette="nord"]:not(.dark) .chroma .dl { color: #a3be8c; }
+html[data-palette="nord"]:not(.dark) .chroma .m,
+html[data-palette="nord"]:not(.dark) .chroma .mb,
+html[data-palette="nord"]:not(.dark) .chroma .mf,
+html[data-palette="nord"]:not(.dark) .chroma .mh,
+html[data-palette="nord"]:not(.dark) .chroma .mi,
+html[data-palette="nord"]:not(.dark) .chroma .il,
+html[data-palette="nord"]:not(.dark) .chroma .mo { color: #b48ead; }
+html[data-palette="nord"]:not(.dark) .chroma .c,
+html[data-palette="nord"]:not(.dark) .chroma .c1,
+html[data-palette="nord"]:not(.dark) .chroma .cm,
+html[data-palette="nord"]:not(.dark) .chroma .cs,
+html[data-palette="nord"]:not(.dark) .chroma .ch,
+html[data-palette="nord"]:not(.dark) .chroma .cp,
+html[data-palette="nord"]:not(.dark) .chroma .cpf {
+  color: #616e88; font-style: italic; font-weight: normal;
+}
+html[data-palette="nord"]:not(.dark) .chroma .o,
+html[data-palette="nord"]:not(.dark) .chroma .ow {
+  color: #81a1c1; font-weight: normal;
+}
+
+/* Nord — подсветка кода, тёмная тема */
+html[data-palette="nord"].dark .highlight .chroma {
+  background-color: #3b4252; color: #d8dee9;
+}
+html[data-palette="nord"].dark .highlight .chroma .k,
+html[data-palette="nord"].dark .highlight .chroma .kc,
+html[data-palette="nord"].dark .highlight .chroma .kd,
+html[data-palette="nord"].dark .highlight .chroma .kn,
+html[data-palette="nord"].dark .highlight .chroma .kp,
+html[data-palette="nord"].dark .highlight .chroma .kr,
+html[data-palette="nord"].dark .highlight .chroma .kt {
+  color: #81a1c1; font-weight: normal;
+}
+html[data-palette="nord"].dark .highlight .chroma .nc {
+  color: #8fbcbb; font-weight: bold;
+}
+html[data-palette="nord"].dark .highlight .chroma .nf,
+html[data-palette="nord"].dark .highlight .chroma .ne,
+html[data-palette="nord"].dark .highlight .chroma .nd { color: #88c0d0; }
+html[data-palette="nord"].dark .highlight .chroma .nb,
+html[data-palette="nord"].dark .highlight .chroma .bp,
+html[data-palette="nord"].dark .highlight .chroma .nv,
+html[data-palette="nord"].dark .highlight .chroma .vc,
+html[data-palette="nord"].dark .highlight .chroma .vg,
+html[data-palette="nord"].dark .highlight .chroma .vi { color: #81a1c1; }
+html[data-palette="nord"].dark .highlight .chroma .s,
+html[data-palette="nord"].dark .highlight .chroma .s1,
+html[data-palette="nord"].dark .highlight .chroma .s2,
+html[data-palette="nord"].dark .highlight .chroma .sa,
+html[data-palette="nord"].dark .highlight .chroma .sb,
+html[data-palette="nord"].dark .highlight .chroma .sc,
+html[data-palette="nord"].dark .highlight .chroma .sd,
+html[data-palette="nord"].dark .highlight .chroma .se,
+html[data-palette="nord"].dark .highlight .chroma .sh,
+html[data-palette="nord"].dark .highlight .chroma .si,
+html[data-palette="nord"].dark .highlight .chroma .sx,
+html[data-palette="nord"].dark .highlight .chroma .sr,
+html[data-palette="nord"].dark .highlight .chroma .ss,
+html[data-palette="nord"].dark .highlight .chroma .dl { color: #a3be8c; }
+html[data-palette="nord"].dark .highlight .chroma .m,
+html[data-palette="nord"].dark .highlight .chroma .mb,
+html[data-palette="nord"].dark .highlight .chroma .mf,
+html[data-palette="nord"].dark .highlight .chroma .mh,
+html[data-palette="nord"].dark .highlight .chroma .mi,
+html[data-palette="nord"].dark .highlight .chroma .il,
+html[data-palette="nord"].dark .highlight .chroma .mo { color: #b48ead; }
+html[data-palette="nord"].dark .highlight .chroma .c,
+html[data-palette="nord"].dark .highlight .chroma .c1,
+html[data-palette="nord"].dark .highlight .chroma .cm,
+html[data-palette="nord"].dark .highlight .chroma .cs,
+html[data-palette="nord"].dark .highlight .chroma .ch,
+html[data-palette="nord"].dark .highlight .chroma .cp,
+html[data-palette="nord"].dark .highlight .chroma .cpf {
+  color: #4c566a; font-style: italic;
+}
+html[data-palette="nord"].dark .highlight .chroma .o,
+html[data-palette="nord"].dark .highlight .chroma .ow { color: #88c0d0; }
+
+/* ── Catppuccin ───────────────────────────────────────────────── */
+
+html[data-palette="catppuccin"] {
+  --hx-color-white:      #eff1f5;
+  --primary-hue:         220deg;
+  --primary-saturation:  91%;
+  --primary-lightness:   54%;
+}
+html[data-palette="catppuccin"]:not(.dark) body {
+  background-color: #eff1f5;
+}
+
+html[data-palette="catppuccin"].dark {
+  --hx-color-dark:       #1e1e2e;
+  --primary-hue:         217deg;
+  --primary-saturation:  92%;
+  --primary-lightness:   76%;
+}
+html[data-palette="catppuccin"].dark body {
+  background-color: #1e1e2e;
+}
+
+/* Catppuccin Latte — подсветка кода, светлая тема */
+html[data-palette="catppuccin"]:not(.dark) .chroma {
+  background-color: #e6e9ef; color: #4c4f69;
+}
+html[data-palette="catppuccin"]:not(.dark) .chroma .k,
+html[data-palette="catppuccin"]:not(.dark) .chroma .kc,
+html[data-palette="catppuccin"]:not(.dark) .chroma .kd,
+html[data-palette="catppuccin"]:not(.dark) .chroma .kn,
+html[data-palette="catppuccin"]:not(.dark) .chroma .kp,
+html[data-palette="catppuccin"]:not(.dark) .chroma .kr,
+html[data-palette="catppuccin"]:not(.dark) .chroma .kt {
+  color: #8839ef; font-weight: normal;
+}
+html[data-palette="catppuccin"]:not(.dark) .chroma .nc {
+  color: #179299; font-weight: bold;
+}
+html[data-palette="catppuccin"]:not(.dark) .chroma .nf,
+html[data-palette="catppuccin"]:not(.dark) .chroma .ne,
+html[data-palette="catppuccin"]:not(.dark) .chroma .nd {
+  color: #1e66f5; font-weight: normal;
+}
+html[data-palette="catppuccin"]:not(.dark) .chroma .nb,
+html[data-palette="catppuccin"]:not(.dark) .chroma .bp,
+html[data-palette="catppuccin"]:not(.dark) .chroma .nv,
+html[data-palette="catppuccin"]:not(.dark) .chroma .vc,
+html[data-palette="catppuccin"]:not(.dark) .chroma .vg,
+html[data-palette="catppuccin"]:not(.dark) .chroma .vi { color: #04a5e5; }
+html[data-palette="catppuccin"]:not(.dark) .chroma .s,
+html[data-palette="catppuccin"]:not(.dark) .chroma .s1,
+html[data-palette="catppuccin"]:not(.dark) .chroma .s2,
+html[data-palette="catppuccin"]:not(.dark) .chroma .sa,
+html[data-palette="catppuccin"]:not(.dark) .chroma .sb,
+html[data-palette="catppuccin"]:not(.dark) .chroma .sc,
+html[data-palette="catppuccin"]:not(.dark) .chroma .sd,
+html[data-palette="catppuccin"]:not(.dark) .chroma .se,
+html[data-palette="catppuccin"]:not(.dark) .chroma .sh,
+html[data-palette="catppuccin"]:not(.dark) .chroma .si,
+html[data-palette="catppuccin"]:not(.dark) .chroma .sx,
+html[data-palette="catppuccin"]:not(.dark) .chroma .sr,
+html[data-palette="catppuccin"]:not(.dark) .chroma .ss,
+html[data-palette="catppuccin"]:not(.dark) .chroma .dl { color: #40a02b; }
+html[data-palette="catppuccin"]:not(.dark) .chroma .m,
+html[data-palette="catppuccin"]:not(.dark) .chroma .mb,
+html[data-palette="catppuccin"]:not(.dark) .chroma .mf,
+html[data-palette="catppuccin"]:not(.dark) .chroma .mh,
+html[data-palette="catppuccin"]:not(.dark) .chroma .mi,
+html[data-palette="catppuccin"]:not(.dark) .chroma .il,
+html[data-palette="catppuccin"]:not(.dark) .chroma .mo { color: #fe640b; }
+html[data-palette="catppuccin"]:not(.dark) .chroma .c,
+html[data-palette="catppuccin"]:not(.dark) .chroma .c1,
+html[data-palette="catppuccin"]:not(.dark) .chroma .cm,
+html[data-palette="catppuccin"]:not(.dark) .chroma .cs,
+html[data-palette="catppuccin"]:not(.dark) .chroma .ch,
+html[data-palette="catppuccin"]:not(.dark) .chroma .cp,
+html[data-palette="catppuccin"]:not(.dark) .chroma .cpf {
+  color: #8c8fa1; font-style: italic; font-weight: normal;
+}
+html[data-palette="catppuccin"]:not(.dark) .chroma .o,
+html[data-palette="catppuccin"]:not(.dark) .chroma .ow {
+  color: #04a5e5; font-weight: normal;
+}
+
+/* Catppuccin Mocha — подсветка кода, тёмная тема */
+html[data-palette="catppuccin"].dark .highlight .chroma {
+  background-color: #181825; color: #cdd6f4;
+}
+html[data-palette="catppuccin"].dark .highlight .chroma .k,
+html[data-palette="catppuccin"].dark .highlight .chroma .kc,
+html[data-palette="catppuccin"].dark .highlight .chroma .kd,
+html[data-palette="catppuccin"].dark .highlight .chroma .kn,
+html[data-palette="catppuccin"].dark .highlight .chroma .kp,
+html[data-palette="catppuccin"].dark .highlight .chroma .kr,
+html[data-palette="catppuccin"].dark .highlight .chroma .kt {
+  color: #cba6f7; font-weight: normal;
+}
+html[data-palette="catppuccin"].dark .highlight .chroma .nc {
+  color: #94e2d5; font-weight: bold;
+}
+html[data-palette="catppuccin"].dark .highlight .chroma .nf,
+html[data-palette="catppuccin"].dark .highlight .chroma .ne,
+html[data-palette="catppuccin"].dark .highlight .chroma .nd { color: #89b4fa; }
+html[data-palette="catppuccin"].dark .highlight .chroma .nb,
+html[data-palette="catppuccin"].dark .highlight .chroma .bp,
+html[data-palette="catppuccin"].dark .highlight .chroma .nv,
+html[data-palette="catppuccin"].dark .highlight .chroma .vc,
+html[data-palette="catppuccin"].dark .highlight .chroma .vg,
+html[data-palette="catppuccin"].dark .highlight .chroma .vi { color: #89dceb; }
+html[data-palette="catppuccin"].dark .highlight .chroma .s,
+html[data-palette="catppuccin"].dark .highlight .chroma .s1,
+html[data-palette="catppuccin"].dark .highlight .chroma .s2,
+html[data-palette="catppuccin"].dark .highlight .chroma .sa,
+html[data-palette="catppuccin"].dark .highlight .chroma .sb,
+html[data-palette="catppuccin"].dark .highlight .chroma .sc,
+html[data-palette="catppuccin"].dark .highlight .chroma .sd,
+html[data-palette="catppuccin"].dark .highlight .chroma .se,
+html[data-palette="catppuccin"].dark .highlight .chroma .sh,
+html[data-palette="catppuccin"].dark .highlight .chroma .si,
+html[data-palette="catppuccin"].dark .highlight .chroma .sx,
+html[data-palette="catppuccin"].dark .highlight .chroma .sr,
+html[data-palette="catppuccin"].dark .highlight .chroma .ss,
+html[data-palette="catppuccin"].dark .highlight .chroma .dl { color: #a6e3a1; }
+html[data-palette="catppuccin"].dark .highlight .chroma .m,
+html[data-palette="catppuccin"].dark .highlight .chroma .mb,
+html[data-palette="catppuccin"].dark .highlight .chroma .mf,
+html[data-palette="catppuccin"].dark .highlight .chroma .mh,
+html[data-palette="catppuccin"].dark .highlight .chroma .mi,
+html[data-palette="catppuccin"].dark .highlight .chroma .il,
+html[data-palette="catppuccin"].dark .highlight .chroma .mo { color: #fab387; }
+html[data-palette="catppuccin"].dark .highlight .chroma .c,
+html[data-palette="catppuccin"].dark .highlight .chroma .c1,
+html[data-palette="catppuccin"].dark .highlight .chroma .cm,
+html[data-palette="catppuccin"].dark .highlight .chroma .cs,
+html[data-palette="catppuccin"].dark .highlight .chroma .ch,
+html[data-palette="catppuccin"].dark .highlight .chroma .cp,
+html[data-palette="catppuccin"].dark .highlight .chroma .cpf {
+  color: #6c7086; font-style: italic;
+}
+html[data-palette="catppuccin"].dark .highlight .chroma .o,
+html[data-palette="catppuccin"].dark .highlight .chroma .ow { color: #89dceb; }
+
+/* ── Кнопка переключения палитры ─────────────────────────────── */
+
+#hextra-palette-toggle {
+  background: none;
+  border: 1px solid currentColor;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  padding: 0.2rem 0.35rem;
+  color: #9ca3af;
+  transition: color 0.15s, border-color 0.15s;
+  flex-shrink: 0;
+}
+
+#hextra-palette-toggle:hover {
+  color: #374151;
+}
+
+.dark #hextra-palette-toggle {
+  color: #737373;
+}
+
+.dark #hextra-palette-toggle:hover {
+  color: #f9fafb;
+}
+
+#hextra-sidebar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+#hextra-sidebar-toggle svg {
+  transition: transform 0.25s ease, color 0.15s;
+  display: block;
+}
+
+@media (min-width: 768px) {
+  #hextra-sidebar-toggle {
+    display: flex;
+    align-items: flex-start;
+    position: sticky;
+    top: calc(var(--navbar-height) + 1rem);
+  }
+
+  #hextra-sidebar-toggle:hover {
+    color: #374151;
+  }
+
+  body.sidebar-hidden aside.hextra-sidebar-container {
+    display: none;
+  }
+
+  body.sidebar-hidden #hextra-sidebar-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #hextra-sidebar-toggle {
+    color: #737373;
+  }
+
+  #hextra-sidebar-toggle:hover {
+    color: #f9fafb;
+  }
+}
+
+#hextra-toc-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem;
+  color: #9ca3af;
+  flex-shrink: 0;
+  align-self: flex-start;
+}
+
+#hextra-toc-toggle svg {
+  transition: transform 0.25s ease;
+  display: block;
+}
+
+@media (min-width: 1280px) {
+  #hextra-toc-toggle {
+    display: flex;
+    align-items: flex-start;
+    position: sticky;
+    top: calc(var(--navbar-height) + 1rem);
+  }
+
+  #hextra-toc-toggle:hover {
+    color: #374151;
+  }
+
+  body.toc-hidden nav.hextra-toc {
+    display: none;
+  }
+
+  body.toc-hidden #hextra-toc-toggle svg {
+    transform: rotate(180deg);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  #hextra-toc-toggle {
+    color: #737373;
+  }
+
+  #hextra-toc-toggle:hover {
+    color: #f9fafb;
+  }
+}
