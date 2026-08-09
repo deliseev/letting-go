@@ -150,14 +150,14 @@ func TestRegionSize(t *testing.T) {
 	}
 }
 
-// regionRefRE matches a {{< region ... >}} shortcode call and
-// captures its attributes so file/name can be pulled out regardless
-// of the order they're written in.
-var regionRefRE = regexp.MustCompile(`\{\{<\s*region\s+([^>]*?)\s*/?>\}\}`)
+// regionRefRE matches a {{< code ... >}} shortcode call and
+// captures its attributes so file/region can be pulled out
+// regardless of the order they're written in.
+var regionRefRE = regexp.MustCompile(`\{\{<\s*code\s+([^>]*?)\s*/?>\}\}`)
 var regionAttrRE = regexp.MustCompile(`(\w+)\s*=\s*"([^"]*)"`)
 
 // contentRegionRefs walks content/ (a sibling of examples/) and
-// returns the set of "file#name" pairs referenced by {{< region >}}
+// returns the set of "file#region" pairs referenced by {{< code >}}
 // shortcode calls.
 func contentRegionRefs(t *testing.T) map[string]bool {
 	t.Helper()
@@ -179,8 +179,8 @@ func contentRegionRefs(t *testing.T) map[string]bool {
 			for _, m := range regionAttrRE.FindAllStringSubmatch(call[1], -1) {
 				attrs[m[1]] = m[2]
 			}
-			if attrs["file"] != "" && attrs["name"] != "" {
-				refs[attrs["file"]+"#"+attrs["name"]] = true
+			if attrs["file"] != "" && attrs["region"] != "" {
+				refs[attrs["file"]+"#"+attrs["region"]] = true
 			}
 		}
 		return nil
@@ -192,7 +192,7 @@ func contentRegionRefs(t *testing.T) map[string]bool {
 }
 
 // TestNoOrphanedRegions enforces that every region defined under
-// examples/ is referenced by at least one {{< region >}} call in
+// examples/ is referenced by at least one {{< code >}} call in
 // content/ — a region nobody includes is dead weight nothing catches
 // if it silently rots.
 func TestNoOrphanedRegions(t *testing.T) {
@@ -205,7 +205,7 @@ func TestNoOrphanedRegions(t *testing.T) {
 		for _, r := range pf.regions {
 			key := r.file + "#" + r.name
 			if !refs[key] {
-				t.Errorf("%s:%d: region %q is not referenced by any {{< region >}} call in content/",
+				t.Errorf("%s:%d: region %q is not referenced by any {{< code >}} call in content/",
 					r.file, r.startLine, r.name)
 			}
 		}

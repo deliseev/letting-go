@@ -1,0 +1,2 @@
+# map-key-struct
+./main.go:14:16: invalid map key type Course

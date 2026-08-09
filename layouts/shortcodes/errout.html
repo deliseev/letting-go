@@ -1,0 +1,48 @@
+{{- /*
+Renders the real toolchain output captured for one broken-example
+case under examples/<case>/, i.e.
+
+  examples/<case>/want.txt   the verbatim output to show
+  examples/<case>/cmd        (optional) the command that produced it
+
+The block's header shows the command (from cmd, or "go build ./" if
+absent) so the reader knows what was run. See each module's
+broken_test.go for how want.txt is verified against a real run —
+this shortcode only displays it, it doesn't run anything.
+Fails the build (does not render an empty block) if the case
+directory or want.txt is missing, so a stale reference can't ship.
+
+@param {string} case Path of the case directory, relative to examples/.
+
+@example {{< errout case="a-fundament/values/testdata/broken/iface-pointer-receiver" >}}
+*/}}
+
+{{- $case := .Get "case" -}}
+
+{{- if not $case -}}
+  {{- errorf "%q requires a %q parameter. %s" .Name "case" .Position -}}
+{{- else -}}
+
+{{- $dir := printf "examples/%s" $case -}}
+{{- $wantPath := printf "%s/want.txt" $dir -}}
+{{- if not (os.FileExists $wantPath) -}}
+  {{- errorf "%q: no such file %q. %s" .Name $wantPath .Position -}}
+{{- else -}}
+
+  {{- $cmdPath := printf "%s/cmd" $dir -}}
+  {{- $cmd := "go build ./" -}}
+  {{- if os.FileExists $cmdPath -}}
+    {{- $cmd = strings.TrimSpace (os.ReadFile $cmdPath) -}}
+  {{- end -}}
+
+  {{- $content := printf "%s\n" (strings.TrimSpace (os.ReadFile $wantPath)) -}}
+
+  <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+    {{- partial "components/codeblock" (dict "filename" (printf "$ %s" $cmd) "lang" "text" "content" $content "options" (dict)) -}}
+    {{- if or (eq site.Params.highlight.copy.enable nil) (site.Params.highlight.copy.enable) -}}
+      {{- partialCached "components/codeblock-copy-button" (dict "filename" $wantPath) $wantPath -}}
+    {{- end -}}
+  </div>
+
+{{- end -}}
+{{- end -}}

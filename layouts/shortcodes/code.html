@@ -1,0 +1,108 @@
+{{- /*
+Renders one named region from a file in examples/, delimited by
+
+  // region: <name>
+  ...
+  // endregion: <name>
+
+See CLAUDE.md at the repo root for the region-marker convention.
+Fails the build (does not render an empty block) if the file is
+missing or the named region isn't in it, so a stale reference can't
+silently ship.
+
+The region may sit inside a block (e.g. inside a test/example
+function used only to make the snippet runnable) — every content
+line is dedented by exactly the leading whitespace of the
+"// region:" marker line itself, so the shown code starts flush left
+regardless of how deep the marker is nested. Relative indentation
+inside the region (e.g. a multi-line literal) is preserved.
+
+If "// endregion:" is immediately followed (blank lines allowed) by
+a "// Output:" comment, that comment is included too. This lets a
+region end where the interesting code ends while still showing the
+real, go-test-verified output of a testing.Example func — Go
+requires that comment to be the last thing in the function body, so
+it can never sit between the code and "// endregion:" itself.
+
+@param {string} file Path of the source file, relative to examples/.
+@param {string} region Region name to extract.
+@param {string} [lang] Highlight language. Defaults to "go".
+
+@example {{< code file="foundations/value-receiver.go" region="value-receiver" >}}
+*/}}
+
+{{- $file := .Get "file" -}}
+{{- $region := .Get "region" -}}
+{{- $lang := .Get "lang" | default "go" -}}
+
+{{- if not $file -}}
+  {{- errorf "%q requires a %q parameter. %s" .Name "file" .Position -}}
+{{- else if not $region -}}
+  {{- errorf "%q requires a %q parameter. %s" .Name "region" .Position -}}
+{{- else -}}
+
+{{- $path := printf "examples/%s" $file -}}
+{{- if not (os.FileExists $path) -}}
+  {{- errorf "%q: no such file %q. %s" .Name $path .Position -}}
+{{- else -}}
+
+  {{- $startMarker := printf "// region: %s" $region -}}
+  {{- $endMarker := printf "// endregion: %s" $region -}}
+  {{- $collecting := false -}}
+  {{- $found := false -}}
+  {{- $indent := 0 -}}
+  {{- $awaitingOutput := false -}}
+  {{- $lines := slice -}}
+
+  {{- range strings.Split (os.ReadFile $path) "\n" -}}
+    {{- $trimmed := strings.TrimSpace . -}}
+    {{- $cut := $indent -}}
+    {{- if lt (len .) $cut -}}
+      {{- $cut = len . -}}
+    {{- end -}}
+
+    {{- if eq $trimmed $startMarker -}}
+      {{- if $found -}}
+        {{- errorf "%q: region %q appears more than once in %q. %s" $.Name $region $path $.Position -}}
+      {{- end -}}
+      {{- $collecting = true -}}
+      {{- $found = true -}}
+      {{- $indent = sub (len .) (len (strings.TrimLeft "\t " .)) -}}
+    {{- else if and $collecting (eq $trimmed $endMarker) -}}
+      {{- $collecting = false -}}
+      {{- $awaitingOutput = true -}}
+    {{- else if $collecting -}}
+      {{- $lines = $lines | append (substr . $cut) -}}
+    {{- else if $awaitingOutput -}}
+      {{- if eq $trimmed "" -}}
+        {{- /* keep waiting through blank lines between endregion and Output */ -}}
+      {{- else if strings.HasPrefix $trimmed "// Output:" -}}
+        {{- $lines = $lines | append (substr . $cut) -}}
+        {{- $awaitingOutput = false -}}
+      {{- else -}}
+        {{- $awaitingOutput = false -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- if not $found -}}
+    {{- errorf "%q: region %q not found in %q. %s" .Name $region $path .Position -}}
+  {{- else if $collecting -}}
+    {{- errorf "%q: region %q in %q has no matching %q. %s" .Name $region $path $endMarker .Position -}}
+  {{- else -}}
+
+    {{- /* strings.TrimSpace strips leading/trailing blank lines too,
+           since a blank line is just whitespace either side of \n */ -}}
+    {{- $content := printf "%s\n" (strings.TrimSpace (delimit $lines "\n")) -}}
+
+    <div class="hextra-code-block hx:relative hx:mt-6 hx:first:mt-0 hx:group/code">
+      {{- partial "components/codeblock" (dict "filename" $file "lang" $lang "content" $content "options" (dict)) -}}
+      {{- if or (eq site.Params.highlight.copy.enable nil) (site.Params.highlight.copy.enable) -}}
+        {{- partialCached "components/codeblock-copy-button" (dict "filename" $file) $path -}}
+      {{- end -}}
+    </div>
+
+  {{- end -}}
+{{- end -}}
+
+{{- end -}}

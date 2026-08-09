@@ -1,0 +1,2 @@
+# compare-struct
+./main.go:16:6: invalid operation: a == b (struct containing []Student cannot be compared)

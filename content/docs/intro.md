@@ -3,7 +3,6 @@ id: intro
 title: "Введение"
 description: "От ООП-мышления к идиоматичному Go"
 weight: 1
-draft: true
 ---
 
 Посмотрите на этот код.

@@ -1,0 +1,2 @@
+# iface-pointer-receiver
+./main.go:27:9: cannot use c (variable of struct type Course) as Titled value in argument to rename: Course does not implement Titled (method SetTitle has pointer receiver)
